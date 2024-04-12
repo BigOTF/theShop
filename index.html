@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <Link rel="stylesheet" href="./style.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="brand">weShop</h1>
+
+    <a class='cart-icon-div'>
+      <i class="bi bi-cart3 cartIcon" onclick="showSideBar()"></i>
+      <div class="cart-icon">0</div>
+    </a>
+  </header>
+  
+  <div class="product-categories">
+    <p>
+      SHOP BY CATEGORIES
+    </p>
+
+    <div class="categoriesDiv">
+
+      <!-- SHOE DIV CATEGORY -->
+      <div class="category">
+        <p>Shoe</p>
+        <a href="./shoe.html">
+          <img src='./images/shoe1.webp' class="category-images" alt="shoeCollection" title="Shoe Collection"/>
+        </a>
+        <div class="category-div">
+          <p><span id="category-shoe-product">0</span> Product</p>
+        </div>
+      </div>
+
+      <!-- FOOD DIV CATEGORY -->
+      <div class="category">
+        <p>Food</p>
+        <a href="./food.html">
+          <img src='./images/food1.jpg' class="category-images" alt="foodCollection" title="Food Collection" />
+        </a>
+        <div class="category-div">
+          <p><span id="category-food-product">0</span> Product</p>
+        </div>
+      </div>
+      
+      <!-- CLOTH DIV CATEGORY -->
+      <div class="category">
+        <p>Cloth</p>
+        <a href="./cloth.html">
+          <img src='./images/fcloth1.jpg' class="category-images" alt="clothCollection" title="Cloth Collection"/>
+        </a>
+        <div class="category-div">
+          <p><span id="category-cloth-product">0</span> Product</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="./src/data/shoeData.js"></script>
+<script src="./src/data/foodData.js"></script>
+<script src="./src/data/clothData.js"></script>
+<script src="./src/index.js"></script>
+</html>

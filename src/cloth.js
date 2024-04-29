@@ -154,6 +154,7 @@ const getTotalBill = () => {
 }
 getTotalBill()
 
+
 /* FUNCTION TO CANCEL THE CART DETAILS */
 const cancelCartObject = (id) => {
     cartData = cartData.filter((data) => data.id !== id);

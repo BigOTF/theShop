@@ -1,4 +1,4 @@
-const foodSection = document.querySelector('#food-section')
+const foodSection = document.querySelector('#food-section');
 const plus = document.querySelector('.plus');
 const cartIcon = document.querySelector('.cart-icon');
 
@@ -59,7 +59,7 @@ const increment = (id) => {
     } else {
        findId.item += 1
     }
-    update(id)
+    updateCount(id)
     localStorage.setItem('cartObject', JSON.stringify(cartData))
 }
 
@@ -71,25 +71,26 @@ const decrement = (id) => {
     else {
        findId.item -= 1
     }
-    update(id)
+    updateCount(id)
     cartData = cartData.filter((data) => data.item !== 0);
     localStorage.setItem('cartObject', JSON.stringify(cartData))
 }
 
-/* UPDATE FUNCTION */
-const update = (id) => {
+/* UPDATECOUNT FUNCTION */
+const updateCount = (id) => {
     const findId = cartData.find((x) => x.id === id);
     document.getElementById(id).innerHTML = findId.item
     calculation()
     getTotalBill()
 }
 
-/* CALCULATION */
+/* CALCULATION FUNCTION */
 const calculation = () => {
     const calculatedData = cartData.map((data) => data.item).reduce((x, y) => x + y, 0)
-    cartIcon.innerHTML = calculatedData;
+    cartIcon.innerHTML = calculatedData
 }
 calculation()
+
 
 /* THE FUNCTIONS BELOW IS FOR THE SIDE BAR */
 
@@ -97,7 +98,7 @@ calculation()
 const generateMainCartPage = () => {
     if(cartData.length !== 0) {
         cartDataDisplay.innerHTML = cartData.map((data) => {
-            const searchId = foodData.find((x) => x.id === data.id) || shoeData.find((x) => x.id === data.id)
+            const searchId = foodData.find((x) => x.id === data.id)  || shoeData.find((y) => y.id === data.id) || clothData.find((x) => x.id === data.id) 
             return (
                `<div class='sideBar'>
        
@@ -141,10 +142,10 @@ const showSideBar = () => {
     }
 }
 
-/* FUNCTION TO GET THE TOTAL BILL */
+/* FUNCTION TO GET THE TOTAL AMOUNT */
 const getTotalBill = () => {
     subTotal.innerHTML = cartData.map((x) => {
-        const searchId = foodData.find((data) => data.id === x.id) || shoeData.find((data) => data.id === x.id)
+        const searchId = shoeData.find((data) => data.id === x.id) || foodData.find((data) => data.id === x.id) || clothData.find((data) => data.id === x.id) 
         return (
             x.item * searchId.price
         )
@@ -158,6 +159,7 @@ const cancelCartObject = (id) => {
     cartData = cartData.filter((data) => data.id !== id);
     generateMainCartPage()
     getTotalBill()
+    
     localStorage.setItem('cartObject', JSON.stringify(cartData))
 }
 cancelCartObject()

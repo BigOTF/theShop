@@ -17,7 +17,14 @@ const paymentPage = document.querySelector('#payment')
 
 const cartItems = document.querySelector('.cartItems')
 const payment = document.querySelector('.payment')
+const paymentButtonDiv = document.querySelector('.payment-div')
+const checkoutButtonDiv = document.querySelector('.checkout-div')
+const payButtonDiv = document.querySelector('.pay-div')
 
+const email = document.getElementById('email')
+const cardNumber = document.getElementById('cardNumber')
+const expiry = document.getElementById('expiry')
+const cvv = document.getElementById('cvv')
 
 let cartData = JSON.parse(localStorage.getItem('cartObject')) || [];
 
@@ -204,14 +211,33 @@ cancelCartObject()
 
 /* PAYMENT BUTTON */
 const makePaymentBtnToggle = () => {
-    if (cartItems.style.display === 'block' || payment.style.display === 'none') {
+    if (cartItems.style.display === 'block' && payment.style.display === 'none' && paymentButtonDiv.style.display === 'block' && checkoutButtonDiv.style.display === 'none' && payButtonDiv.style.display === 'none') {
         cartDataDisplay.style.display = 'none';
         payment.style.display = 'block'
+        paymentButtonDiv.style.display = 'none'
+        checkoutButtonDiv.style.display = 'block'
+        payButtonDiv.style.display = 'block'
         calculation()
     } else {
         cartDataDisplay.style.display = 'block';
         payment.style.display = 'none'
+        paymentButtonDiv.style.display = 'block'
+        checkoutButtonDiv.style.display = 'none'
+        payButtonDiv.style.display = 'none'
         calculation()
     }
-    
+} 
+
+const payNow = () => {
+    if(email.value && cardNumber.value && expiry.value && cvv.value) {
+        alert('Payment made successfully');
+        email.value = ''
+        cardNumber.value = ''
+        expiry.value = ''
+        cvv.value = ''
+
+        localStorage.clear()
+        generateMainCartPage()
+    }
 }
+payNow()

@@ -37,8 +37,6 @@
         <div class="payment-card">
           <label for="email">Email Address:</label>
           <input type="email" id="email"/>
-          <label for="cardOwner">Cardholder name:</label>
-          <input type="text" id="cardOwner"/>
           <label for="cardNumber">Card Number:</label>
           <input type="number" id="cardNumber" name="cardNumber" required>
           <label for="expiry">Expiry Date:</label>
@@ -68,8 +66,16 @@
         <p class="total-p">0</p>
       </div>
 
+      <div class="payment-div">
+        <button class="payment-button" onclick="makePaymentBtnToggle()">PROCEED TO PAYMENT</button>
+      </div>
+
+      <div class="pay-div">
+        <button class="pay-button" onclick="payNow()">PAY NOW</button>
+      </div>
+
       <div class="checkout-div">
-        <button class="checkout-button" onclick="makePaymentBtnToggle()">PROCEED TO PAYEMENT</button>
+        <button class="checkout-button" onclick="makePaymentBtnToggle()">CHECKOUT</button>
       </div>
     </div>
     

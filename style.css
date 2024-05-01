@@ -141,10 +141,6 @@ a {
     gap: 20px; 
 }
 
-.card-name {
-  
-}
-
 .card-button {
     width: 100%
 }
@@ -210,6 +206,7 @@ a {
     border-bottom: 1px solid rgba(128, 128, 128, 0.473);
     padding-top: 10px;
     padding-bottom: 10px;
+    overflow-y: hidden;
 }
 
 .cartItems {
@@ -286,6 +283,30 @@ a {
     padding: 10px 0;
     width: 100%;
     cursor: pointer;
+}
+
+.payment-button {
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.pay-button {
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.payment-div {
+    display: block;
+}
+
+.checkout-div {
+    display: none;
+}
+
+.pay-div {
+    display: none;
 }
 /* SIDEBAR SECTION ENDS HERE */
 

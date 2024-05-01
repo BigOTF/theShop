@@ -36,7 +36,7 @@ const foodMainSection = () => {
                 <img src=${data.image} class='card-image'/>
                 <div class='card-body'>
                     <p class='card-name'>${data.name}</p>
-                    <p class='card-price'>$${data.price}</p>
+                    <p class='card-price'>&#163;${data.price}</p>
                 
                     <div class='card-button'>
                        <button onclick='addToCart(${data.id})' class='button'>ADD TO CART</button>
@@ -129,7 +129,7 @@ const generateMainCartPage = () => {
        
                        <div class='sideBarCartBody'>
                            <p>${searchId.name}</p>
-                           <p>$${searchId.price}</p>
+                           <p>&#163;${searchId.price}</p>
                            <div class='sideBarCount'>
                                <i onclick="decrement(${searchId.id})" class="bi bi-dash minus"></i>
                                <p id=${searchId.id} class=''>${data === undefined ? 0 : data.item}</p>
@@ -183,8 +183,8 @@ const subTotalBill = () => {
     generateMainCartPage()
 
     const deliveryFee = calculateDeliveryFee(subtotal);
-    subTotal.innerHTML = '$' + subtotal;
-    deliveryP.innerHTML = '$' + deliveryFee;
+    subTotal.innerHTML = '&#163;' + subtotal;
+    deliveryP.innerHTML = '&#163;' + deliveryFee;
 
     return subtotal + deliveryFee;
 }
@@ -193,7 +193,7 @@ subTotalBill()
 /* THIS FUNCTION HELPS TO CALCULATE THE ADDITION OF BOTH THE DELIVERY FEE AND SUB-TOTAL FEE */
 const calculateTotal = () => {
     const total = subTotalBill();
-    totalP.innerHTML = '$' + total;
+    totalP.innerHTML = '&#163;' + total;
     generateMainCartPage()
 }
 calculateTotal();

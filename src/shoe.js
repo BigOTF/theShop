@@ -10,6 +10,14 @@ const newCartIcon = document.querySelector('.newCarticon');
 const sideBarSection = document.querySelector('.sideBarSection');
 const cartDataDisplay = document.querySelector('#sideBarCart');
 const subTotal = document.querySelector('.subtotal-p');
+const deliveryP = document.querySelector('.delivery-p');
+const totalP = document.querySelector('.total-p');
+const paymentBtn = document.querySelector('.checkout-button')
+const paymentPage = document.querySelector('#payment')
+
+const cartItems = document.querySelector('.cartItems')
+const payment = document.querySelector('.payment')
+
 
 let cartData = JSON.parse(localStorage.getItem('cartObject')) || [];
 
@@ -44,7 +52,9 @@ const addToCart = (id) => {
         findId.item += 1
     }
     calculation()
-    getTotalBill()
+    subTotalBill()
+    calculateDeliveryFee()
+    calculateTotal()
     localStorage.setItem('cartObject', JSON.stringify(cartData))
 }
 
@@ -81,7 +91,9 @@ const updateCount = (id) => {
     const findId = cartData.find((x) => x.id === id);
     document.getElementById(id).innerHTML = findId.item
     calculation()
-    getTotalBill()
+    subTotalBill()
+    calculateTotal()
+    calculateDeliveryFee()
 }
 
 /* CALCULATION FUNCTION */
@@ -142,24 +154,64 @@ const showSideBar = () => {
     }
 }
 
-/* FUNCTION TO GET THE TOTAL AMOUNT */
-const getTotalBill = () => {
-    subTotal.innerHTML = cartData.map((x) => {
+/* THIS FUNCTION HELPS TO CALCULATE WHAT THE DELIVERY FEE WOULD BE */
+const calculateDeliveryFee = (subtotal) => {
+    generateMainCartPage()
+    if (subtotal % 2 === 0) {
+        return 0.005 * subtotal;
+    } else {
+        return 0.005;
+    }
+}
+
+/* FUNCTION TO GET THE SUB-TOTAL AMOUNT */
+const subTotalBill = () => {
+    const subtotal= cartData.map((x) => {
         const searchId = shoeData.find((data) => data.id === x.id) || foodData.find((data) => data.id === x.id) || clothData.find((data) => data.id === x.id) 
         return (
             x.item * searchId.price
         )
     }).reduce((x,y) => x+y, 0)
     generateMainCartPage()
+
+    const deliveryFee = calculateDeliveryFee(subtotal);
+    subTotal.innerHTML = '$' + subtotal;
+    deliveryP.innerHTML = '$' + deliveryFee;
+
+    return subtotal + deliveryFee;
 }
-getTotalBill()
+subTotalBill()
+
+/* THIS FUNCTION HELPS TO CALCULATE THE ADDITION OF BOTH THE DELIVERY FEE AND SUB-TOTAL FEE */
+const calculateTotal = () => {
+    const total = subTotalBill();
+    totalP.innerHTML = '$' + total;
+    generateMainCartPage()
+}
+
+calculateTotal();
 
 /* FUNCTION TO CANCEL THE CART DETAILS */
 const cancelCartObject = (id) => {
     cartData = cartData.filter((data) => data.id !== id);
     generateMainCartPage()
-    getTotalBill()
-    
+    subTotalBill()
+    calculateDeliveryFee()
+    calculateTotal()
     localStorage.setItem('cartObject', JSON.stringify(cartData))
 }
 cancelCartObject()
+
+/* PAYMENT BUTTON */
+const makePaymentBtnToggle = () => {
+    if (cartItems.style.display === 'block' || payment.style.display === 'none') {
+        cartDataDisplay.style.display = 'none';
+        payment.style.display = 'block'
+        calculation()
+    } else {
+        cartDataDisplay.style.display = 'block';
+        payment.style.display = 'none'
+        calculation()
+    }
+    
+}

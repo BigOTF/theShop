@@ -33,13 +33,43 @@
 
       </div>
 
+      <div id="payment" class="payment">
+        <div class="payment-card">
+          <label for="email">Email Address:</label>
+          <input type="email" id="email"/>
+          <label for="cardOwner">Cardholder name:</label>
+          <input type="text" id="cardOwner"/>
+          <label for="cardNumber">Card Number:</label>
+          <input type="number" id="cardNumber" name="cardNumber" required>
+          <label for="expiry">Expiry Date:</label>
+          <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv" required>
+          <label for="billingAdress">Billing address</label>
+          <select>
+            <option>London</option>
+          </select>
+        </div>
+       
+      </div>
+
       <div class="subtotal-div">
-        <p>SUBTOTAL</p>
+        <p>Subtotal</p>
         <p class="subtotal-p">0</p>
       </div>
 
+      <div class="delivery-div">
+        <p>Delivery</p>
+        <p class="delivery-p">0</p>
+      </div>
+
+      <div class="total-div">
+        <p>Total</p>
+        <p class="total-p">0</p>
+      </div>
+
       <div class="checkout-div">
-        <button class="checkout-button">PROCEED TO CHECKOUT</button>
+        <button class="checkout-button" onclick="makePaymentBtnToggle()">PROCEED TO PAYEMENT</button>
       </div>
     </div>
     
